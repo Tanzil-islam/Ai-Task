@@ -20,6 +20,7 @@ yfinance==0.2.44
 matplotlib==3.9.2
 numpy==1.26.4
 python-dotenv==1.0.1
-python-jose==3.3.0
+
+
 
 
