@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trader Task - Multi-AI API Demo</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🤖 AI Trader Task Demo</h1>
+            <p class="subtitle">Multi-task AI API for Softvence Omega</p>
+        </header>
+
+        <!-- Authentication Section -->
+        <div class="auth-section">
+            <h3>🔐 Authentication (Optional)</h3>
+            <div class="auth-form">
+                <input type="text" id="username" placeholder="Username (default: admin)" value="admin">
+                <input type="password" id="password" placeholder="Password (default: password)" value="password">
+                <button onclick="authenticateUser()">Get Token</button>
+            </div>
+            <div id="auth-status" class="status-message"></div>
+        </div>
+
+        <!-- Task Selection -->
+        <div class="task-section">
+            <h3>📋 Select AI Task</h3>
+            <div class="task-buttons">
+                <button class="task-btn active" onclick="selectTask('qa')">Q&A Agent</button>
+                <button class="task-btn" onclick="selectTask('fetch_latest')">Fetch Latest</button>
+                <button class="task-btn" onclick="selectTask('generate_image')">Generate Image</button>
+                <button class="task-btn" onclick="selectTask('generate_content')">Generate Content</button>
+            </div>
+        </div>
+
+        <!-- Input Forms -->
+        <div class="input-section">
+            <!-- Q&A Form -->
+            <div id="qa-form" class="task-form active">
+                <h4>❓ Ask a Question</h4>
+                <textarea id="question-input" placeholder="Enter your question here..."></textarea>
+                <button onclick="executeTask()">Submit Question</button>
+            </div>
+
+            <!-- Fetch Latest Form -->
+            <div id="fetch-form" class="task-form">
+                <h4>📤 Fetch Latest Q&A</h4>
+                <p>Click the button to retrieve the most recent question and answer from the database.</p>
+                <button onclick="executeTask()">Fetch Latest</button>
+            </div>
+
+            <!-- Image Generation Form -->
+            <div id="image-form" class="task-form">
+                <h4>🎨 Generate Image</h4>
+                <textarea id="image-prompt" placeholder="Describe the image you want to generate..."></textarea>
+                <button onclick="executeTask()">Generate Image</button>
+            </div>
+
+            <!-- Content Generation Form -->
+            <div id="content-form" class="task-form">
+                <h4>✍️ Generate Content</h4>
+                <textarea id="content-prompt" placeholder="Enter the topic for content generation..."></textarea>
+                <select id="platform-select">
+                    <option value="facebook">Facebook</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="twitter">Twitter</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="general">General</option>
+                </select>
+                <button onclick="executeTask()">Generate Content</button>
+            </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Processing your request...</p>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results-section" class="results-section">
+            <h3>📊 Results</h3>
+            <div id="results-content" class="results-content">
+                <p class="placeholder">Results will appear here after executing a task.</p>
+            </div>
+        </div>
+
+        <!-- API Documentation -->
+        <div class="api-docs">
+            <h3>📚 API Documentation</h3>
+            <p>This demo uses a single API endpoint: <code>/ai-task</code></p>
+            <div class="endpoint-info">
+                <strong>POST /ai-task</strong>
+                <pre>{
+  "task": "qa|fetch_latest|generate_image|generate_content",
+  "question": "string (for Q&A)",
+  "prompt": "string (for image/content generation)",
+  "platform": "string (for content generation)"
+}</pre>
+            </div>
+            <p>View full API documentation at <a href="/docs" target="_blank">/docs</a></p>
+        </div>
+
+        <footer class="footer">
+            <p>Built for Softvence Omega (Betopia Group) Recruitment Task</p>
+        </footer>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>

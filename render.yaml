@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: ai-task-api
+    env: docker
+    repo: https://github.com/yourusername/ai-task-project # Replace with your GitHub repo
+    region: oregon # Free tier region, adjust as needed
+    plan: free
+    branch: main
+    dockerCommand: docker build -t ai-task-api .
+    healthCheckPath: /generate-token
+    envVars:
+      - key: HF_TOKEN
+        sync: false # Set manually in Render dashboard
+      - key: SECRET_KEY
+        sync: false # Set manually in Render dashboard
+    autoDeploy: true
