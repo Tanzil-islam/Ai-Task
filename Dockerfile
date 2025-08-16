@@ -1,4 +1,4 @@
-# Builder stage to compile dependencies
+
 FROM python:3.13-slim AS builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -30,3 +30,4 @@ RUN pip install --no-index --find-links=/wheels -r requirements.txt
 EXPOSE 8000
 
 CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port $PORT"]s
+
