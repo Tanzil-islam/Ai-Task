@@ -39,7 +39,7 @@ app.mount("/", StaticFiles(directory="frontend", html=True), name="static")
 @app.post("/token")
 async def login(token_request: TokenRequest):
     """Generate JWT token (optional endpoint for authentication)"""
-    # Simple authentication - in production, verify against user database
+
     if token_request.username == "admin" and token_request.password == "password":
         access_token = create_access_token(data={"sub": token_request.username})
         return {"access_token": access_token, "token_type": "bearer"}
@@ -51,7 +51,7 @@ async def login(token_request: TokenRequest):
 async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
     """Verify JWT token (optional authentication)"""
     if not credentials:
-        return None  # Allow unauthenticated access
+        return None  
     
     token = credentials.credentials
     try:
@@ -143,4 +143,5 @@ async def health_check():
 if __name__ == "__main__":
     import uvicorn
     port = int(os.environ.get("PORT", 8000))
+
     uvicorn.run(app, host="0.0.0.0", port=port)
