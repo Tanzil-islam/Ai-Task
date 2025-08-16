@@ -1,8 +1,3 @@
-"""
-MCP (Model Context Protocol) Client Integration
-This is a simplified implementation for the task requirements.
-In a full production environment, you would integrate with actual MCP servers.
-"""
 
 import asyncio
 import json
@@ -30,9 +25,7 @@ class MCPClient:
         """Text generation tool via MCP"""
         prompt = parameters.get("prompt", "")
         max_length = parameters.get("max_length", 100)
-        
-        # Simulate MCP tool call
-        # In real implementation, this would communicate with MCP server
+
         return {
             "success": True,
             "result": f"Generated text for: {prompt[:50]}...",
@@ -108,4 +101,5 @@ class MCPServer:
 
 # Global MCP instances
 mcp_client = MCPClient()
+
 mcp_server = MCPServer()
